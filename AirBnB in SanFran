@@ -1,0 +1,18 @@
+What's the most expensive listing? What else can you tell me about the listing?
+
+SELECT *
+FROM sfo_listings
+ORDER BY price
+LIMIT 1
+
+What neighborhoods seem to be the most popular?
+SELECT neighbourhood, AVG(availability_365 ::INTEGER)AS average_availability
+FROM sfo_listings
+GROUP BY neighbourhood
+ORDER BY average_availability
+
+
+SELECT to_char(calender_date, 'Month') AS month, 
+AVG(CAST(replace(price,'$',0) AS int)
+FROM sfo_calendar
+GROUP BY Month

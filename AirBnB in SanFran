@@ -11,8 +11,23 @@ FROM sfo_listings
 GROUP BY neighbourhood
 ORDER BY average_availability
 
+What time of year is the cheapest time to go to San Francisco? 
 
 SELECT to_char(calender_date, 'Month') AS month, 
-AVG(CAST(replace(price,'$',0) AS int)
+AVG(price::money::numeric)::money avg_price
 FROM sfo_calendar
 GROUP BY Month
+ORDER BY avg_price
+
+Winter is the cheapest time of year to go to San Francisco (January, followed by February and then December).
+
+What about the busiest?
+
+SELECT to_char(calender_date, 'Month') AS month, 
+COUNT(available)
+FROM sfo_calendar
+WHERE available = 't'
+GROUP BY Month
+ORDER BY count
+
+The busiest time of year is in the fall (September followed by October).

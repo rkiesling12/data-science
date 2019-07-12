@@ -1,10 +1,11 @@
 --1
-SELECT 
-	*
-FROM 
-	naep
-WHERE 
-	false;
+SELECT
+   column_name, 
+   data_type
+FROM
+   information_schema.columns
+WHERE
+   TABLE_NAME = 'naep';
 
 
 -- 2

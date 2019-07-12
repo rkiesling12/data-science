@@ -89,7 +89,7 @@ SELECT
 	total_expenditure
 FROM 
 	naep
-JOIN finance
+LEFT JOIN finance
 ON naep.id = finance.id
 WHERE 
 	naep.year = 2000 AND
